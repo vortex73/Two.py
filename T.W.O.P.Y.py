@@ -91,6 +91,12 @@ if __name__ == "__main__":
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             Goverbal(f" the time is {strTime}")
+            
+        elif 'open google' in query:
+            webbrowser.open("google.com")
+            
+        elif 'open youtube' in query:
+            webbrowser.open("youtube.com")
 
         elif 'shutdown' in query:
             import os 
