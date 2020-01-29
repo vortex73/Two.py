@@ -4,11 +4,12 @@ import datetime
 import wikipedia 
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+import webbrowser
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
-engine.setProperty('voice', voices[0].id)
+engine.setProperty('voice', voices[0].id)   
 
 
 def Goverbal(audio): 
@@ -76,9 +77,7 @@ if __name__ == "__main__":
             Goverbal('Enter the name of user or group : ')
             name = Input()
             Goverbal('Enter your message : ')
-            msg = Input()
-          
-
+            msg = Input() 
             user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
             user.click()
 
@@ -86,17 +85,11 @@ if __name__ == "__main__":
 
             for i in range(0):
                msg_box.send_keys(msg)
-               button = driver.find_element_by_class_name('_3M-N-')
+               button = driver.find_element_by_class_name('hnQHL')
                button.click()
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             Goverbal(f" the time is {strTime}")
-            
-        elif 'open google' in query:
-            webbrowser.open("google.com")
-            
-        elif 'open youtube' in query:
-            webbrowser.open("youtube.com")
 
         elif 'shutdown' in query:
             import os 
@@ -108,6 +101,16 @@ if __name__ == "__main__":
             else: 
                 Goverbal('ok bye')
                 os.system("shutdown /s /t 1")
+
+       
+        elif 'open youtube' in query:
+            driver = webdriver.Chrome(ChromeDriverManager().install())
+            driver.get('https://www.youtube.com/')
+            break
+        elif 'open google' in query:
+            driver = webdriver.Chrome(ChromeDriverManager().install())
+            driver.get('https://www.google.com/')
+            break
 
         elif 'alarm' in query:
             from pygame import mixer
