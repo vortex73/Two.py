@@ -41,7 +41,7 @@ def Input():
 
     try:
         Goverbal("Recognizing...")    
-        query = r.recognize_google(audio, language='en-us')
+        query = r.recognize_google(audio, language='en-in')
         print(f"User said: {query}\n")
 
     except Exception as e:
